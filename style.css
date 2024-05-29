@@ -8,7 +8,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    background: #080808;
+    background: #0e0e0e;
     color: #fff;
 }
 #header{
@@ -155,7 +155,7 @@ font-size: 14px;
 }
 .certification-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 40px;
     margin-top: 50px;
 }
@@ -163,7 +163,7 @@ font-size: 14px;
 .certification-list div{
     background: #262626;
     padding: 40px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 300;
     border-radius: 10px;
     transition: background 0.5s, transform 0.5s;
@@ -362,11 +362,11 @@ nav .fa-solid{
         background-image: url(Picture/Bg\ mobile.png);
     }
     .header-text{
-        margin-top: 135%;
-        font-size: 30px;
+        margin-top: 120%;
+        font-size: 34px;
     }
     .header-text h1{
-        font-size: 18.4px;
+        font-size: 23px;
     }
     nav .fa-solid{
         display: block;
