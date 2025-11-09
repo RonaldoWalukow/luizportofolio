@@ -17,6 +17,7 @@ body{
     background-image: url(Ronaldo\ Luiz\ Walukow.JPG);
     background-size: cover;
     background-position: center;
+
    /*----- background-size: 250px;
     background-repeat: no-repeat;
     background-position: center;
@@ -65,7 +66,9 @@ nav ul li a:hover::after{
 
 .header-text{
     margin-top: 20%;
-    font-size: 30px;
+    left: 20px;
+    font-size: 55px;
+    color: #ffffff;
 }
 
 .header-tex h1{
@@ -138,11 +141,13 @@ nav ul li a:hover::after{
 
 .tab-contents ul li span{
 color: #57529e;
-font-size: 14px;
+font-size: 16px;
+font-weight: bold;
 }
 
 .tab-contents{
     display: none;
+    font-size: 14px;
 }
 .tab-contents.active-tab{
     display: block;
@@ -359,7 +364,7 @@ nav .fa-solid{
 }
 @media only screen and (max-width: 600px){
     #header {
-        background-image: url(Picture/Bg\ mobile.png);
+        background-image: url();
     }
     .header-text{
         margin-top: 120%;
