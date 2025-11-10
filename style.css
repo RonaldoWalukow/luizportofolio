@@ -35,19 +35,51 @@ nav{
 .logo{
     width: 100px;
 }
-
 nav ul li{
     display: inline-block;
     list-style: none;
     margin: 10px 20px;
 }
 
-nav ul li a{
+nav ul {
+    position: fixed;          /* sidebar stays on screen */
+    top: -1.5cm;
+    right: 6.3cm;
+    width: 200px;
+    height: 100vh;            /* full viewport height */
+    display: flex;
+    flex-direction: row;   /* stack items vertically */
+    justify-content: space-between; /* even spacing top-to-bottom */
+    padding: 50px 0;          /* optional padding */
+    z-index: 100;
+}
+nav {
+    width: 100%;            /* full width of viewport */
+    background: #0e0e0e;    /* choose your color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;     /* optional padding inside nav */
+    position: fixed;         /* optional: stay on top when scrolling */
+    top: 0;                  /* stick to top */
+    left: 0;                 /* start from left edge */
+    z-index: 999;
+    
+}
+
+nav ul li {
+    list-style: none;
+    text-align: center;
+}
+
+nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 18px;
-    position: relative;
+    font-size: 22px;
+    position: relative; /* normal flow inside sidebar */
+
 }
+
 
 nav ul li a::after{
     content: '';
@@ -144,14 +176,13 @@ color: #57529e;
 font-size: 16px;
 font-weight: bold;
 }
-
-.tab-contents{
-    display: none;
-    font-size: 14px;
-}
-.tab-contents.active-tab{
-    display: block;
-
+.tab-contents {
+    position: relative;
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
+    transition: all 0.4s ease;
+    max-height: 1000px;
+    overflow: hidden;
 }
 
 /*---------certification------*/
@@ -425,4 +456,43 @@ nav .fa-solid{
     color: #61b752;
     margin-top: -40px;
     display: block;
+}
+
+/* Hidden state before scrolling */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+/* When the section enters the viewport */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Faded & blurred when above viewport */
+.reveal.blur {
+    opacity: 0.4; /* semi-transparent */
+    filter: blur(4px); /* blur effect */
+    transition: all 0.8s ease-out;
+}
+
+.tab-contents {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-30px); /* start left */
+    transition: all 0.4s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.tab-contents.active-tab {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 1000px; 
+}
+
+.tab-contents.exit-right {
+    opacity: 0;
+    transform: translateX(30px); /* slide out to right */
 }

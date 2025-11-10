@@ -30,7 +30,7 @@
             </ul>
             <i class="fa-solid fa-bars" onclick=" openmenu()"></i>
         </nav>
-        <div class="header-text">
+        <div class="header-text reveal">
             <p>PERSONAL</p>
             <h1>PORTOFOLIO<span></span><br></br>  </h1>
         </div>
@@ -41,18 +41,18 @@
 <div id="about">
     <div class="container">
         <div class="row">
-            <div class="about-col-1">
+            <div class="about-col-1 reveal">
                 <img src="Picture/Ronaldo Luiz Walukow for profile.JPG">
             </div>
-            <div class="about-col-2">
+            <div class="about-col-2 reveal">
                 <h1 class="sub-title">About Me</h1>
                 <p>
                     The name is Ronaldo Luiz Walukow, but people more familiar with Luiz. I'm currently working on-site as a Project Administration at Kansanshi Mining Project Limited Company, located at North-West Province of Zambia. As a Project Administration I work on daily reporting of SMP works, recording timesheet manhours, providing a data for manpower planning, accomodation & transportation management, inventory management, material request and supporting overall operational administration works. It was challenging and make the journey worth, i've failed a lot of time and learned a lot of thing. I'm eager to learn more and keep growing!
                 </p>
                 <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('achievement')">Achievements</p>
-                    <p class="tab-links " onclick="opentab('experience')">Experiences</p>
-                    <p class="tab-links" onclick="opentab('skill')">Skills</p>
+                    <p class="tab-links active-link" onclick="opentab('achievement', event)">Achievements</p>
+                    <p class="tab-links " onclick="opentab('experience', event)">Experiences</p>
+                    <p class="tab-links" onclick="opentab('skill', event)">Skills</p>
                 </div>
                 <div class="tab-contents active-tab" id="achievement">
                     <ul>
@@ -98,7 +98,7 @@
                 <div class="tab-contents" id="skill">
                     <ul>
                         <li>
-                            <span>Interpersonal</span><br>Honest, Good Teamwork, Good Communication & Coordination, Dependability, Flexibility, Adaptability, Patience and Decision Making</span>
+                            <span>Interpersonal</span><br>Integrity, Good Communication & Teamwork Coordination, Dependability, Flexibility, Adaptability and Decision Making</span>
                         </li>
                         <li>
                             <span>Language</span><br>Indonesian (native) and English (active)</span>
@@ -109,7 +109,7 @@
                             </span>
                         </li>
                         <li>
-                            <span>Computer</span><br>SAP, Accurate Professional, CAPSIM, Microsoft Office Specialist, Adobe
+                            <span>Computer</span><br>SAP, Accurate Professional, CAPSIM, Microsoft Office, Adobe
                             Photoshop, Odoo Software, Lucid Chart, Entrepreneurial Operating System, Pronto Xi
                             </span>
                         </li>
@@ -123,7 +123,7 @@
 <div id="certification">
     <div class="container">
         <h1 class="sub-title">Certifications</h1>
-        <div class="certification-list">
+        <div class="certification-list reveal">
             <div>
                 <i class="fa-brands fa-microsoft"></i>
                 <h2>MOS Excel</h2>
@@ -163,7 +163,7 @@
 <div id="portofolio">
     <div class="container">
         <h1 class="sub-title">SAP in Data Processing Certificate</h1>
-        <div class="portofolio-list">
+        <div class="portofolio-list reveal">
             <div class="portofolio">
                 <img src="SAPHR.png">
                 <div class="layer">
@@ -201,13 +201,13 @@
                 </div>
             </div>
         </div>
-        <a href="#certification" class="btn">See more</a>
+        <a href="#certification" class="btn reveal">See more</a>
     </div>
 </div>
 
 <!--------contact=-------->
 <div id="contact">
-    <div class="container">
+    <div class="container reveal">
         <div class="row">
             <div class="contact-left">
                 <h1 class="sub-title">Contact Me</h1>
@@ -253,12 +253,12 @@
     }
 </script>
 <script>
-var sidemeu = document.getElementById("sidemenu");
+var sidemenu = document.getElementById("sidemenu");
 function openmenu(){
-    sidemeu.style.right = "0";
+    sidemenu.style.right = "0";
 }
 function closemenu(){
-    sidemeu.style.right = "-200px";
+    sidemenu.style.right = "-200px";
 }
 </script>
 <script>
@@ -279,5 +279,66 @@ function closemenu(){
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+<!---reveal code-->
+    <script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // In viewport → visible, clear blur
+            entry.target.classList.add('active');
+            entry.target.classList.remove('blur');
+        } else {
+            const bounding = entry.target.getBoundingClientRect();
+            if (bounding.top < 0) {
+                // Element scrolled past → blur & fade
+                entry.target.classList.add('blur');
+                entry.target.classList.remove('active');
+            } else {
+                // Element below viewport → hide completely
+                entry.target.classList.remove('active', 'blur');
+            }
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+<!----TABS ANIMATION-->
+<script>
+var tablinks = document.getElementsByClassName("tab-links");
+var tabcontents = document.getElementsByClassName("tab-contents");
+
+function opentab(tabname) {
+    // Remove active-link from all tabs
+    for (let tablink of tablinks) {
+        tablink.classList.remove("active-link");
+    }
+
+    // Reset all tab contents
+    for (let tabcontent of tabcontents) {
+        tabcontent.classList.remove("active-tab");
+        tabcontent.style.opacity = 0;
+        tabcontent.style.transform = "translateX(-10px)"; // reset to left
+    }
+
+    // Activate clicked tab
+    event.currentTarget.classList.add("active-link");
+
+    // Animate the selected content
+    const content = document.getElementById(tabname);
+    content.classList.add("active-tab");
+
+    // Trigger left-slide animation
+    setTimeout(() => {
+        content.style.opacity = 1;
+        content.style.transform = "translateX(0)";
+    }, 50);
+}
+</script>
+
     </body>
 </html>
