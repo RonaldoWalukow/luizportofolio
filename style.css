@@ -64,7 +64,6 @@ nav {
     top: 0;                  /* stick to top */
     left: 0;                 /* start from left edge */
     z-index: 999;
-    
 }
 
 nav ul li {
